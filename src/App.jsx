@@ -4,6 +4,20 @@ import CardGrid from "./components/CardGrid.jsx";
 
 function App() {
   const [cards,setCards] = useState([]);
+  const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
+  const [clickedIds, setClickedIds] = useState(new Set());
+
+  function handleCardClick(id) {
+    if (clickedIds.has(id)) {;
+      if (score > bestScore) setBestScore(score);
+      setScore(0);
+      setClickedIds(new Set());
+    } else {
+      setClickedIds((prev) => new Set(prev).add(id));
+      setScore((prev) => prev + 1);
+    }
+  }
 
   useEffect(() => {
     async function fetchPokemon() {
@@ -33,8 +47,8 @@ function App() {
   return (
     <div className="app">
       <h1>Memory Card Game</h1>
-      <Scoreboard score={0} bestScore={0} />
-      <CardGrid cards={cards} />
+      <Scoreboard score={score} bestScore={bestScore} />
+      <CardGrid cards={cards} onCardClick={handleCardClick} />
     </div>
   );
 }
