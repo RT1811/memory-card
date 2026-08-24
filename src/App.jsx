@@ -29,7 +29,7 @@ function App() {
       image: pokemon.sprites.front_default,
     }));
 
-    setCards(formattedCards);
+    setCards(shuffleCards(formattedCards));
   }
 
   function handleCardClick(id) {
@@ -71,14 +71,22 @@ function App() {
   }, [])
 
   return (
-    <div className="app">
-      <h1>Memory Card Game</h1>
-      <Scoreboard score={score} bestScore={bestScore} />
-       <button onClick={handleNewGame}>
-        New Game
-      </button>
+    <main className="app">
+      <header className="game-header">
+        <h1>Memory Card Game</h1>
+        <p className="instructions">
+          Get points by clicking a Pokémon, but don't click the same one twice!
+        </p>
+
+        <Scoreboard score={score} bestScore={bestScore} />
+
+        <button className="new-game-button" onClick={handleNewGame}>
+          New Game
+        </button>
+      </header>
+
       <CardGrid cards={cards} onCardClick={handleCardClick} />
-    </div>
+    </main>
   );
 }
 
