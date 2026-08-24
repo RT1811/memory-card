@@ -8,6 +8,30 @@ function App() {
   const [bestScore, setBestScore] = useState(0);
   const [clickedIds, setClickedIds] = useState(new Set());
 
+   async function fetchPokemon() {
+    const randomIDs = new Set();
+
+    while (randomIDs.size < 12) {
+      randomIDs.add(Math.floor(Math.random() * 151) + 1);
+    }
+
+    const requests = [...randomIDs].map((id) =>
+      fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) =>
+        res.json()
+      )
+    );
+
+    const result = await Promise.all(requests);
+
+    const formattedCards = result.map((pokemon) => ({
+      id: pokemon.id,
+      name: pokemon.name,
+      image: pokemon.sprites.front_default,
+    }));
+
+    setCards(formattedCards);
+  }
+
   function handleCardClick(id) {
     if (clickedIds.has(id)) { 
       if (score > bestScore) setBestScore(score);
@@ -15,7 +39,7 @@ function App() {
       setClickedIds(new Set());
     } else {
       setClickedIds((prev) => new Set(prev).add(id));
-       const nextScore = score + 1;
+      const nextScore = score + 1;
       setScore(nextScore);
       if (nextScore > bestScore) setBestScore(score);
     }
@@ -35,27 +59,15 @@ function App() {
     return shuffled;
   }
 
+  function handleNewGame() {
+    setScore(0);
+    setClickedIds(new Set());
+
+    fetchPokemon();
+  }
+
   useEffect(() => {
-    async function fetchPokemon() {
-      const randomIDs = new Set();
-      while (randomIDs.size < 12) {
-        randomIDs.add(Math.floor(Math.random() * 151) + 1);
-      }
-
-      const requests = [...randomIDs].map((id) =>
-      fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) => res.json())
-    );
-
-    const result = await Promise.all(requests);
-
-    const formattedCards = result.map((pokemon) => ({
-      id: pokemon.id,
-      name: pokemon.name,
-      image: pokemon.sprites.front_default,
-    }))
-
-    setCards(formattedCards);
-    }
+    fetchPokemon();
 
     fetchPokemon();
   }, [])
@@ -64,6 +76,9 @@ function App() {
     <div className="app">
       <h1>Memory Card Game</h1>
       <Scoreboard score={score} bestScore={bestScore} />
+       <button onClick={handleNewGame}>
+        New Game
+      </button>
       <CardGrid cards={cards} onCardClick={handleCardClick} />
     </div>
   );
