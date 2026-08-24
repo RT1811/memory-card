@@ -1,0 +1,15 @@
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  cursor: pointer;
+  text-align: center;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 4px;
+}
