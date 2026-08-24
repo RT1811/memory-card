@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Scoreboard from "./components/Scoreboard.jsx";
 import CardGrid from "./components/CardGrid.jsx";
+import "./styles/App.css"
 
 function App() {
   const [cards,setCards] = useState([]);
