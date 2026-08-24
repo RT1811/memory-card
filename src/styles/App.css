@@ -1,0 +1,83 @@
+.app {
+  width: min(1200px, 100%);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+.game-header {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.game-header h1 {
+  margin: 0;
+
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+
+  color: #ffcb05;
+  text-shadow: 2px 2px 0 #2a75bb;
+}
+
+.instructions {
+  margin: 0.75rem auto 1.5rem;
+  max-width: 600px;
+
+  color: #cbd5e1;
+}
+
+.new-game-button {
+  margin-top: 0.5rem;
+  padding: 0.8rem 1.5rem;
+
+  border: 2px solid #ffcb05;
+  border-radius: 10px;
+
+  background: #2a75bb;
+  color: #ffffff;
+
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+
+  cursor: pointer;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.new-game-button:hover {
+  background: #3b82c4;
+  transform: translateY(-2px);
+
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+.new-game-button:active {
+  transform: translateY(0);
+
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+}
+
+.new-game-button:focus-visible {
+  outline: 3px solid #ffcb05;
+  outline-offset: 4px;
+}
+
+@media (max-width: 550px) {
+  .app {
+    padding: 1rem;
+  }
+}

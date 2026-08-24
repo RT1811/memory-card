@@ -80,7 +80,7 @@ function App() {
 
         <Scoreboard score={score} bestScore={bestScore} />
 
-        <button className="new-game-button" onClick={handleNewGame}>
+        <button className="new-game-button" type="button" onClick={handleNewGame}>
           New Game
         </button>
       </header>

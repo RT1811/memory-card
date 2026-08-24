@@ -1,0 +1,45 @@
+.scoreboard {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+
+  margin-bottom: 1.25rem;
+}
+
+.score {
+  min-width: 120px;
+  padding: 0.75rem 1.25rem;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+}
+
+.score span {
+  display: block;
+  margin-bottom: 0.2rem;
+
+  color: #cbd5e1;
+
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.score strong {
+  display: block;
+
+  color: #ffcb05;
+  font-size: 1.75rem;
+}
+
+@media (max-width: 550px) {
+  .scoreboard {
+    gap: 0.5rem;
+  }
+
+  .score {
+    min-width: 105px;
+    padding: 0.65rem 0.9rem;
+  }
+}
