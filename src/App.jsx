@@ -41,7 +41,7 @@ function App() {
       setClickedIds((prev) => new Set(prev).add(id));
       const nextScore = score + 1;
       setScore(nextScore);
-      if (nextScore > bestScore) setBestScore(score);
+      setBestScore((prev) => Math.max(prev, nextScore));
     }
 
     setCards((prev) => shuffleCards(prev));
@@ -67,8 +67,6 @@ function App() {
   }
 
   useEffect(() => {
-    fetchPokemon();
-
     fetchPokemon();
   }, [])
 
