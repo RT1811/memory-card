@@ -7,7 +7,7 @@ function Card({ id, name, image, onClick }) {
         type="button"
         onClick={() => onClick(id)}
         >
-        <img src={image} alt={name} />
+        <img src={image} alt="" />
         <p>{name}</p>
         </button>
     );

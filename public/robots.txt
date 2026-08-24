@@ -1,4 +1,2 @@
-<meta
-  name="description"
-  content="A Pokémon memory card game built with React. Click each Pokémon only once and try to beat your best score."
-/>
+User-agent: *
+Allow: /
