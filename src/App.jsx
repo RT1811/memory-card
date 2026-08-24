@@ -9,14 +9,29 @@ function App() {
   const [clickedIds, setClickedIds] = useState(new Set());
 
   function handleCardClick(id) {
-    if (clickedIds.has(id)) {;
+    if (clickedIds.has(id)) { 
       if (score > bestScore) setBestScore(score);
       setScore(0);
       setClickedIds(new Set());
     } else {
       setClickedIds((prev) => new Set(prev).add(id));
       setScore((prev) => prev + 1);
+      if (score > bestScore) setBestScore(score);
     }
+
+    setCards((prev) => shuffleCards(prev));
+  }
+
+  function shuffleCards(cards) {
+    const shuffled = [...cards];
+
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    return shuffled;
   }
 
   useEffect(() => {
