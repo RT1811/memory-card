@@ -15,8 +15,9 @@ function App() {
       setClickedIds(new Set());
     } else {
       setClickedIds((prev) => new Set(prev).add(id));
-      setScore((prev) => prev + 1);
-      if (score > bestScore) setBestScore(score);
+       const nextScore = score + 1;
+      setScore(nextScore);
+      if (nextScore > bestScore) setBestScore(score);
     }
 
     setCards((prev) => shuffleCards(prev));
